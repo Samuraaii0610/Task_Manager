@@ -134,3 +134,39 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Fichiers de build
+[Bb]in/
+[Oo]bj/
+*.user
+*.suo
+*.cache
+*.vs/
+.vscode/
+
+# Fichiers de publication
+pub/
+*.pdb
+*.exe
+*.dll
+
+# Base de données locale
+*.db
+*.db-shm
+*.db-wal
+
+# Fichiers d'environnement
+.env
+appsettings.Development.json
+
+# Packages NuGet
+**/[Pp]ackages/*
+!**/[Pp]ackages/repositories.config
+.nuget/
+
+# Outils de build local
+.msbuild/
+
+# Rider
+.idea/
+*.sln.im
