@@ -1,0 +1,91 @@
+# Fichiers de build .NET
+bin/
+obj/
+*.user
+*.userosscache
+*.suo
+*.userprefs
+*.dbmdl
+*.jfm
+*.pfx
+*.publishsettings
+
+# Visual Studio
+.vs/
+.vscode/
+*.swp
+*.*~
+project.lock.json
+.DS_Store
+*.pyc
+nupkg/
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Rider
+.idea/
+
+# Fichiers de base de données
+*.mdf
+*.ldf
+*.db
+*.sqlite
+*.sqlite3
+
+# Fichiers de configuration locaux
+appsettings.Development.json
+appsettings.Local.json
+*.Development.json
+*.Local.json
+
+# Fichiers de logs
+*.log
+logs/
+
+# Fichiers temporaires
+[Tt]emp/
+[Tt]mp/
+
+# Fichiers de sauvegarde
+*.bak
+*.backup
+*~
+
+# Fichiers de secrets
+secrets.json
+*.pfx
+*.key
+*.pem
+
+# Fichiers de dépendances
+packages/
+node_modules/
+
+# Fichiers de build spécifiques à MAUI
+Resources/Raw/**/*.json
+!Resources/Raw/**/appsettings.json
+!Resources/Raw/**/appsettings.*.json
+
+# Fichiers de test
+TestResults/
+[Tt]est[Rr]esult*/
+*.trx
+*.coverage
+*.coveragexml
+
+# Fichiers de profilage
+*.psess
+*.vsp
+*.vspx
+*.sap
+
+# Fichiers de déploiement
+*.deploy
+*.deployproj
+*.pubxml
+*.pubxml.user 
