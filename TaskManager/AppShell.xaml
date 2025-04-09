@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:TaskManager"
+    xmlns:views="clr-namespace:TaskManager.Views"
     Shell.FlyoutBehavior="Flyout"
     Title="TaskManager">
 
@@ -11,5 +12,15 @@
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
+
+    <ShellContent
+        Title="Tâches"
+        ContentTemplate="{DataTemplate views:TasksPage}"
+        Route="TasksPage" />
+
+    <ShellContent
+        Title="Détail de la tâche"
+        ContentTemplate="{DataTemplate views:TaskDetailPage}"
+        Route="TaskDetailPage" />
 
 </Shell>
