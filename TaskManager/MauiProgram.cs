@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using TaskManager.Data;
 using Microsoft.EntityFrameworkCore;
+using TaskManager.ViewModels;
+using TaskManager.Views;
 
 namespace TaskManager;
 
@@ -22,10 +24,26 @@ public static class MauiProgram
 		builder.Services.AddDbContext<ApplicationDbContext>(options =>
 			options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
+		// Enregistrement des ViewModels
+		builder.Services.AddTransient<TasksViewModel>();
+		builder.Services.AddTransient<TaskDetailViewModel>();
+
+		// Enregistrement des Pages
+		builder.Services.AddTransient<TaskDetailPage>();
+
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif
 
-		return builder.Build();
+		var app = builder.Build();
+
+		// Initialiser la base de données avec des données de test
+		using (var scope = app.Services.CreateScope())
+		{
+			var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+			DbInitializer.Initialize(context);
+		}
+
+		return app;
 	}
 }

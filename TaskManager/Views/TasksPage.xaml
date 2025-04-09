@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TaskManager.Views.TasksPage"
+             Title="Mes Tâches"
+             xmlns:viewmodels="clr-namespace:TaskManager.ViewModels"
+             xmlns:models="clr-namespace:TaskManager.Models"
+             x:DataType="viewmodels:TasksViewModel">
+
+    <Grid RowDefinitions="Auto,*">
+        <Button Text="Nouvelle Tâche"
+                Command="{Binding AddTaskCommand}"
+                HorizontalOptions="End"
+                Margin="10"
+                Grid.Row="0"/>
+
+        <CollectionView ItemsSource="{Binding Tasks}"
+                       Grid.Row="1"
+                       x:DataType="viewmodels:TasksViewModel">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:TodoTask">
+                    <Frame Margin="10"
+                           Padding="10">
+                        <StackLayout>
+                            <Label Text="{Binding Title}"
+                                   FontSize="16"
+                                   FontAttributes="Bold"/>
+                            <Label Text="{Binding Description}"
+                                   FontSize="14"/>
+                            <Label Text="{Binding DueDate, StringFormat='Échéance: {0:d}'}"
+                                   FontSize="12"/>
+                            <Label Text="{Binding Priority}"
+                                   FontSize="12"/>
+                            <Label Text="{Binding Status}"
+                                   FontSize="12"/>
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+
+</ContentPage> 

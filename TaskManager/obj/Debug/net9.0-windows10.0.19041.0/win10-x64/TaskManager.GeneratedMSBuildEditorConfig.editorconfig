@@ -8,7 +8,7 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = TaskManager
-build_property.ProjectDir = C:\Users\baptv\Documents\IUT\Task_Manager\Task_Manager\TaskManager\
+build_property.ProjectDir = F:\BUT Informatique\dev avancé\Task_Manager\Task_Manager\TaskManager\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.CsWinRTAotOptimizerEnabled = true
@@ -22,32 +22,44 @@ build_property.CsWinRTUseWindowsUIXamlProjections = false
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/baptv/Documents/IUT/Task_Manager/Task_Manager/TaskManager/App.xaml]
+[F:/BUT Informatique/dev avancé/Task_Manager/Task_Manager/TaskManager/App.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = TaskManager.App.xaml
 build_metadata.AdditionalFiles.TargetPath = App.xaml
 build_metadata.AdditionalFiles.RelativePath = App.xaml
 
-[C:/Users/baptv/Documents/IUT/Task_Manager/Task_Manager/TaskManager/AppShell.xaml]
+[F:/BUT Informatique/dev avancé/Task_Manager/Task_Manager/TaskManager/AppShell.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = TaskManager.AppShell.xaml
 build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
 build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
 
-[C:/Users/baptv/Documents/IUT/Task_Manager/Task_Manager/TaskManager/MainPage.xaml]
+[F:/BUT Informatique/dev avancé/Task_Manager/Task_Manager/TaskManager/MainPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = TaskManager.MainPage.xaml
 build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
 build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
 
-[C:/Users/baptv/Documents/IUT/Task_Manager/Task_Manager/TaskManager/Resources/Styles/Colors.xaml]
+[F:/BUT Informatique/dev avancé/Task_Manager/Task_Manager/TaskManager/Resources/Styles/Colors.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = TaskManager.Resources.Styles.Colors.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
 build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Colors.xaml
 
-[C:/Users/baptv/Documents/IUT/Task_Manager/Task_Manager/TaskManager/Resources/Styles/Styles.xaml]
+[F:/BUT Informatique/dev avancé/Task_Manager/Task_Manager/TaskManager/Resources/Styles/Styles.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = TaskManager.Resources.Styles.Styles.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
 build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Styles.xaml
+
+[F:/BUT Informatique/dev avancé/Task_Manager/Task_Manager/TaskManager/Views/TaskDetailPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = TaskManager.Views.TaskDetailPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\TaskDetailPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\TaskDetailPage.xaml
+
+[F:/BUT Informatique/dev avancé/Task_Manager/Task_Manager/TaskManager/Views/TasksPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = TaskManager.Views.TasksPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\TasksPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\TasksPage.xaml
