@@ -35,6 +35,15 @@ public static class MauiProgram
 		builder.Logging.AddDebug();
 #endif
 
-		return builder.Build();
+		var app = builder.Build();
+
+		// Initialiser la base de données avec des données de test
+		using (var scope = app.Services.CreateScope())
+		{
+			var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+			DbInitializer.Initialize(context);
+		}
+
+		return app;
 	}
 }
