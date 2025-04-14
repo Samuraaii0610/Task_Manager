@@ -5,9 +5,9 @@ namespace TaskManager.ViewModels
     public partial class BaseViewModel : ObservableObject
     {
         [ObservableProperty]
-        private bool isBusy;
+        private string? title;
 
         [ObservableProperty]
-        private string title;
+        private bool isBusy;
     }
 } 

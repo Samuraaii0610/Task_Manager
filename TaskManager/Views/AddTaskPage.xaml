@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:TaskManager.ViewModels"
              xmlns:models="clr-namespace:TaskManager.Models"
-             x:Class="TaskManager.Views.TaskDetailPage"
+             x:Class="TaskManager.Views.AddTaskPage"
              x:DataType="vm:TaskDetailViewModel"
              Title="{Binding Title}">
 

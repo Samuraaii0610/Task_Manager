@@ -6,10 +6,11 @@ namespace TaskManager.Data
     {
         public static void Initialize(ApplicationDbContext context)
         {
-            // S'assurer que la base de données est créée
+            // S'assurer que la base de données existe et est à jour avec le modèle
+            // mais ne pas la supprimer et la recréer
             context.Database.EnsureCreated();
 
-            // Vérifier s'il y a déjà des utilisateurs
+            // Si des utilisateurs existent déjà, ne pas ajouter de données de test
             if (context.Users.Any())
             {
                 return; // La base de données a déjà été initialisée
@@ -33,6 +34,67 @@ namespace TaskManager.Data
             };
 
             context.Users.AddRange(users);
+            context.SaveChanges();
+
+            // Créer des comptes utilisateurs
+            var salt1 = Convert.ToBase64String(System.Security.Cryptography.RandomNumberGenerator.GetBytes(16));
+            var salt2 = Convert.ToBase64String(System.Security.Cryptography.RandomNumberGenerator.GetBytes(16));
+            
+            // Mot de passe haché pour "password123"
+            var passwordHash1 = HashPassword("password123", salt1);
+            var passwordHash2 = HashPassword("password123", salt2);
+            
+            var userAccounts = new UserAccount[]
+            {
+                new UserAccount
+                {
+                    Username = "jean",
+                    Email = "jean.dupont@example.com",
+                    PasswordHash = passwordHash1,
+                    PasswordSalt = salt1,
+                    IsActive = true,
+                    CreatedAt = DateTime.UtcNow,
+                    UserId = users[0].Id
+                },
+                new UserAccount
+                {
+                    Username = "marie",
+                    Email = "marie.martin@example.com",
+                    PasswordHash = passwordHash2,
+                    PasswordSalt = salt2,
+                    IsActive = true,
+                    CreatedAt = DateTime.UtcNow,
+                    UserId = users[1].Id
+                }
+            };
+            
+            context.UserAccounts.AddRange(userAccounts);
+            context.SaveChanges();
+
+            // Créer des catégories
+            var categories = new Category[]
+            {
+                new Category
+                {
+                    Name = "Travail",
+                    Description = "Tâches professionnelles",
+                    Color = "#3498db"
+                },
+                new Category
+                {
+                    Name = "Personnel",
+                    Description = "Tâches personnelles",
+                    Color = "#2ecc71"
+                },
+                new Category
+                {
+                    Name = "Projet",
+                    Description = "Tâches liées aux projets",
+                    Color = "#9b59b6"
+                }
+            };
+
+            context.Categories.AddRange(categories);
             context.SaveChanges();
 
             // Créer des tags
@@ -76,6 +138,7 @@ namespace TaskManager.Data
                     Status = Status.InProgress,
                     AuthorId = users[0].Id,
                     AssigneeId = users[1].Id,
+                    CategoryId = categories[0].Id,
                     Tags = new List<Tag> { tags[0], tags[2] }
                 },
                 new TodoTask
@@ -86,7 +149,20 @@ namespace TaskManager.Data
                     Priority = Priority.Medium,
                     Status = Status.ToDo,
                     AuthorId = users[1].Id,
+                    CategoryId = categories[2].Id,
                     Tags = new List<Tag> { tags[2] }
+                },
+                new TodoTask
+                {
+                    Title = "Faire les courses",
+                    Description = "Acheter les provisions pour la semaine",
+                    DueDate = DateTime.Now.AddDays(2),
+                    Priority = Priority.Low,
+                    Status = Status.ToDo,
+                    AuthorId = users[0].Id,
+                    AssigneeId = users[0].Id,
+                    CategoryId = categories[1].Id,
+                    Tags = new List<Tag>()
                 }
             };
 
@@ -100,15 +176,24 @@ namespace TaskManager.Data
                 {
                     Title = "Créer les diapositives",
                     Description = "Créer les diapositives PowerPoint",
-                    IsCompleted = false,
+                    Status = Status.InProgress,
+                    DueDate = DateTime.Now.AddDays(3),
                     TodoTaskId = tasks[0].Id
                 },
                 new SubTask
                 {
                     Title = "Préparer les démos",
                     Description = "Préparer les démonstrations pour la présentation",
-                    IsCompleted = false,
+                    Status = Status.ToDo,
+                    DueDate = DateTime.Now.AddDays(4),
                     TodoTaskId = tasks[0].Id
+                },
+                new SubTask
+                {
+                    Title = "Acheter du pain",
+                    Description = "Aller à la boulangerie",
+                    Status = Status.ToDo,
+                    TodoTaskId = tasks[2].Id
                 }
             };
 
@@ -129,11 +214,27 @@ namespace TaskManager.Data
                     Content = "J'ai commencé à travailler sur la première partie",
                     AuthorId = users[0].Id,
                     TodoTaskId = tasks[0].Id
+                },
+                new Comment
+                {
+                    Content = "N'oublie pas les produits bio",
+                    AuthorId = users[1].Id,
+                    TodoTaskId = tasks[2].Id
                 }
             };
 
             context.Comments.AddRange(comments);
             context.SaveChanges();
+        }
+        
+        private static string HashPassword(string password, string salt)
+        {
+            var saltBytes = Convert.FromBase64String(salt);
+            using (var rfc2898 = new System.Security.Cryptography.Rfc2898DeriveBytes(password, saltBytes, 10000))
+            {
+                var hashBytes = rfc2898.GetBytes(32);
+                return Convert.ToBase64String(hashBytes);
+            }
         }
     }
 } 

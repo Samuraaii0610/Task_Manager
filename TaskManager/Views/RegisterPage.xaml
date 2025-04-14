@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TaskManager.Views.RegisterPage"
+             xmlns:viewmodel="clr-namespace:TaskManager.ViewModels"
+             Title="{Binding Title}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="15">
+            <Label Text="Créer un compte"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,20" />
+
+            <Entry Placeholder="Nom d'utilisateur"
+                   Text="{Binding Username}" />
+
+            <Entry Placeholder="Email"
+                   Text="{Binding Email}"
+                   Keyboard="Email" />
+
+            <Entry Placeholder="Prénom"
+                   Text="{Binding FirstName}" />
+
+            <Entry Placeholder="Nom"
+                   Text="{Binding LastName}" />
+
+            <Entry Placeholder="Mot de passe"
+                   Text="{Binding Password}"
+                   IsPassword="True" />
+
+            <Entry Placeholder="Confirmer le mot de passe"
+                   Text="{Binding ConfirmPassword}"
+                   IsPassword="True" />
+
+            <Label Text="{Binding ErrorMessage}"
+                   TextColor="Red"
+                   IsVisible="{Binding IsError}" />
+
+            <Button Text="S'inscrire"
+                    Command="{Binding RegisterCommand}"
+                    IsEnabled="{Binding IsNotBusy}"
+                    HorizontalOptions="Fill" />
+
+            <Button Text="Annuler"
+                    Command="{Binding CancelCommand}"
+                    IsEnabled="{Binding IsNotBusy}"
+                    Style="{StaticResource TextButton}" />
+
+            <ActivityIndicator IsRunning="{Binding IsBusy}"
+                               IsVisible="{Binding IsBusy}"
+                               HorizontalOptions="Center" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage> 
