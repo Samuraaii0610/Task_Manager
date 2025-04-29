@@ -2,15 +2,17 @@ namespace TaskManager.Models
 {
     public enum Priority
     {
-        Low,
-        Medium,
-        High
+        Low,      // basse
+        Medium,   // moyenne
+        High,     // haute
+        Critical  // critique
     }
 
     public enum Status
     {
-        ToDo,
-        InProgress,
-        Done
+        ToDo,       // à faire
+        InProgress, // en cours
+        Done,       // terminée
+        Cancelled   // annulée
     }
 } 

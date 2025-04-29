@@ -8,19 +8,43 @@
     Shell.FlyoutBehavior="Flyout"
     Title="TaskManager">
 
+    <FlyoutItem Title="Tableau de bord" Icon="dashboard.png" Route="main">
     <ShellContent
-        Title="Home"
+            Title="Accueil"
         ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+            Route="main" />
+    </FlyoutItem>
+    
+    <FlyoutItem Title="Tâches" Icon="tasks.png" Route="tasks">
+        <ShellContent
+            Title="Mes Tâches"
+            ContentTemplate="{DataTemplate views:TasksPage}"
+            Route="tasks" />
+    </FlyoutItem>
+    
+    <FlyoutItem Title="Mon Profil" Icon="user.png" Route="profile">
+        <ShellContent
+            Title="Profil"
+            ContentTemplate="{DataTemplate views:ProfilePage}"
+            Route="profile" />
+    </FlyoutItem>
+
+    <MenuItem Text="Se déconnecter" 
+              IconImageSource="logout.png" 
+              Command="{Binding LogoutCommand}"
+              StyleClass="MenuItemLayout" />
+    
+    <!-- Pages non visibles dans le menu -->
+    <ShellContent
+        Title="Connexion"
+        ContentTemplate="{DataTemplate views:LoginPage}"
+        Route="login"
+        FlyoutItemIsVisible="False" />
 
     <ShellContent
-        Title="Tâches"
-        ContentTemplate="{DataTemplate views:TasksPage}"
-        Route="TasksPage" />
-
-    <ShellContent
-        Title="Détail de la tâche"
-        ContentTemplate="{DataTemplate views:TaskDetailPage}"
-        Route="TaskDetailPage" />
+        Title="Inscription"
+        ContentTemplate="{DataTemplate views:RegisterPage}"
+        Route="register"
+        FlyoutItemIsVisible="False" />
 
 </Shell>

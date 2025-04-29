@@ -20,5 +20,10 @@ namespace TaskManager.Models
 
         public List<TodoTask> CreatedTasks { get; set; } = new();
         public List<TodoTask> AssignedTasks { get; set; } = new();
+        
+        public override string ToString()
+        {
+            return FullName;
+        }
     }
 } 

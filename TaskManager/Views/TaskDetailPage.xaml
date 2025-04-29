@@ -10,7 +10,7 @@
     <ScrollView>
         <VerticalStackLayout Spacing="10" Padding="20">
             <Label Text="Titre" />
-            <Entry Text="{Binding Title}" Placeholder="Entrez le titre de la tâche" />
+            <Entry Text="{Binding TaskTitle}" Placeholder="Entrez le titre de la tâche" />
 
             <Label Text="Description" />
             <Editor Text="{Binding Description}" 
@@ -41,6 +41,9 @@
                     </x:Array>
                 </Picker.ItemsSource>
             </Picker>
+
+            <Label Text="Assigné à (email)" />
+            <Entry Text="{Binding AssigneeEmail}" Placeholder="Email de la personne assignée" />
 
             <HorizontalStackLayout Spacing="10" HorizontalOptions="Center" Margin="0,20,0,0">
                 <Button Text="Enregistrer" 

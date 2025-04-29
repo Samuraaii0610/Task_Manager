@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:TaskManager.ViewModels"
+             xmlns:models="clr-namespace:TaskManager.Models"
+             x:Class="TaskManager.Views.AddTaskPage"
+             x:DataType="vm:TaskDetailViewModel"
+             Title="{Binding Title}">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="10" Padding="20">
+            <Label Text="Titre" />
+            <Entry Text="{Binding TaskTitle}" Placeholder="Entrez le titre de la tâche" />
+
+            <Label Text="Description" />
+            <Editor Text="{Binding Description}" 
+                    Placeholder="Entrez la description de la tâche"
+                    HeightRequest="100" />
+
+            <Label Text="Date d'échéance" />
+            <DatePicker Date="{Binding DueDate}" />
+
+            <Label Text="Priorité" />
+            <Picker SelectedItem="{Binding Priority}">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type models:Priority}">
+                        <x:Static Member="models:Priority.Low"/>
+                        <x:Static Member="models:Priority.Medium"/>
+                        <x:Static Member="models:Priority.High"/>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <Label Text="Statut" />
+            <Picker SelectedItem="{Binding Status}">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type models:Status}">
+                        <x:Static Member="models:Status.ToDo"/>
+                        <x:Static Member="models:Status.InProgress"/>
+                        <x:Static Member="models:Status.Done"/>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <Label Text="Assigné à (email)" />
+            <Entry Text="{Binding AssigneeEmail}" Placeholder="Email de la personne assignée" />
+
+            <HorizontalStackLayout Spacing="10" HorizontalOptions="Center" Margin="0,20,0,0">
+                <Button Text="Enregistrer" 
+                        Command="{Binding SaveTaskCommand}"
+                        BackgroundColor="{StaticResource Primary}" />
+                <Button Text="Annuler" 
+                        Command="{Binding CancelCommand}"
+                        BackgroundColor="{StaticResource Secondary}" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage> 

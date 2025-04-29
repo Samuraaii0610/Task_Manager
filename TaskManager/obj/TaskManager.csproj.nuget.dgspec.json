@@ -1,28 +1,28 @@
 {
   "format": 1,
   "restore": {
-    "F:\\BUT Informatique\\dev avancé\\Task_Manager\\Task_Manager\\TaskManager\\TaskManager.csproj": {}
+    "C:\\Users\\baptv\\Documents\\IUT\\Projet_Task_Manager\\Task_Manager\\TaskManager\\TaskManager.csproj": {}
   },
   "projects": {
-    "F:\\BUT Informatique\\dev avancé\\Task_Manager\\Task_Manager\\TaskManager\\TaskManager.csproj": {
+    "C:\\Users\\baptv\\Documents\\IUT\\Projet_Task_Manager\\Task_Manager\\TaskManager\\TaskManager.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\BUT Informatique\\dev avancé\\Task_Manager\\Task_Manager\\TaskManager\\TaskManager.csproj",
+        "projectUniqueName": "C:\\Users\\baptv\\Documents\\IUT\\Projet_Task_Manager\\Task_Manager\\TaskManager\\TaskManager.csproj",
         "projectName": "TaskManager",
-        "projectPath": "F:\\BUT Informatique\\dev avancé\\Task_Manager\\Task_Manager\\TaskManager\\TaskManager.csproj",
-        "packagesPath": "C:\\Users\\Romai\\.nuget\\packages\\",
-        "outputPath": "F:\\BUT Informatique\\dev avancé\\Task_Manager\\Task_Manager\\TaskManager\\obj\\",
+        "projectPath": "C:\\Users\\baptv\\Documents\\IUT\\Projet_Task_Manager\\Task_Manager\\TaskManager\\TaskManager.csproj",
+        "packagesPath": "C:\\Users\\baptv\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\baptv\\Documents\\IUT\\Projet_Task_Manager\\Task_Manager\\TaskManager\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Romai\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\baptv\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net9.0-windows10.0.19041.0"
+          "net8.0-windows10.0.19041.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -30,8 +30,8 @@
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net9.0-windows10.0.19041": {
-            "targetAlias": "net9.0-windows10.0.19041.0",
+          "net8.0-windows10.0.19041": {
+            "targetAlias": "net8.0-windows10.0.19041.0",
             "projectReferences": {}
           }
         },
@@ -48,12 +48,16 @@
         "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
-        "net9.0-windows10.0.19041": {
-          "targetAlias": "net9.0-windows10.0.19041.0",
+        "net8.0-windows10.0.19041": {
+          "targetAlias": "net8.0-windows10.0.19041.0",
           "dependencies": {
             "CommunityToolkit.Mvvm": {
               "target": "Package",
               "version": "[8.2.2, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.13, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -75,13 +79,25 @@
               "target": "Package",
               "version": "[9.0.0, )"
             },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[8.8.0, )"
+            },
             "Microsoft.Maui.Controls": {
               "target": "Package",
-              "version": "[9.0.14, )"
+              "version": "[8.0.100, )"
+            },
+            "Microsoft.Maui.Controls.Compatibility": {
+              "target": "Package",
+              "version": "[8.0.100, )"
             },
             "Pomelo.EntityFrameworkCore.MySql": {
               "target": "Package",
               "version": "[8.0.3, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.8.0, )"
             }
           },
           "imports": [

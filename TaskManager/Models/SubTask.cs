@@ -11,7 +11,9 @@ namespace TaskManager.Models
 
         public string Description { get; set; } = string.Empty;
 
-        public bool IsCompleted { get; set; }
+        public Status Status { get; set; } = Status.ToDo;
+
+        public DateTime? DueDate { get; set; }
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 

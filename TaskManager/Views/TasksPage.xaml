@@ -7,37 +7,175 @@
              xmlns:models="clr-namespace:TaskManager.Models"
              x:DataType="viewmodels:TasksViewModel">
 
-    <Grid RowDefinitions="Auto,*">
-        <Button Text="Nouvelle Tâche"
-                Command="{Binding AddTaskCommand}"
-                HorizontalOptions="End"
-                Margin="10"
-                Grid.Row="0"/>
+    <Grid RowDefinitions="Auto,Auto,*">
+        <Grid Grid.Row="0" ColumnDefinitions="*,Auto" Margin="10">
+            <SearchBar Grid.Column="0" 
+                    Placeholder="Rechercher des tâches..." 
+                    Text="{Binding SearchText}"/>
+            <Button Grid.Column="1"
+                    Text="Nouvelle Tâche"
+                    Command="{Binding AddTaskCommand}"
+                    Margin="5,0,0,0"/>
+        </Grid>
+
+        <Grid Grid.Row="1" Margin="10" ColumnDefinitions="*,*,*,*,*">
+            <VerticalStackLayout Grid.Column="0" Spacing="5">
+                <Label Text="Statut" FontAttributes="Bold"/>
+                <Picker ItemsSource="{Binding StatusList}"
+                        SelectedItem="{Binding FilterStatus}"
+                        Title="Filtrer par statut">
+                    <Picker.ItemDisplayBinding>
+                        <Binding />
+                    </Picker.ItemDisplayBinding>
+                </Picker>
+            </VerticalStackLayout>
+            
+            <VerticalStackLayout Grid.Column="1" Spacing="5">
+                <Label Text="Priorité" FontAttributes="Bold"/>
+                <Picker ItemsSource="{Binding PriorityList}"
+                        SelectedItem="{Binding FilterPriority}"
+                        Title="Filtrer par priorité">
+                    <Picker.ItemDisplayBinding>
+                        <Binding />
+                    </Picker.ItemDisplayBinding>
+                </Picker>
+            </VerticalStackLayout>
+            
+            <VerticalStackLayout Grid.Column="2" Spacing="5">
+                <Label Text="Catégorie" FontAttributes="Bold"/>
+                <Picker ItemsSource="{Binding Categories}"
+                        SelectedItem="{Binding FilterCategory}"
+                        Title="Filtrer par catégorie">
+                    <Picker.ItemDisplayBinding>
+                        <Binding Path="Name" />
+                    </Picker.ItemDisplayBinding>
+                </Picker>
+            </VerticalStackLayout>
+            
+            <VerticalStackLayout Grid.Column="3" Spacing="5">
+                <Label Text="Tri" FontAttributes="Bold"/>
+                <Picker ItemsSource="{Binding SortOptions}"
+                        SelectedItem="{Binding SortBy}"
+                        Title="Trier par">
+                </Picker>
+            </VerticalStackLayout>
+            
+            <VerticalStackLayout Grid.Column="4" Spacing="5">
+                <Label Text="Options" FontAttributes="Bold"/>
+                <HorizontalStackLayout Spacing="5">
+                    <CheckBox IsChecked="{Binding ShowCompletedTasks}"/>
+                    <Label Text="Afficher les tâches terminées" 
+                           VerticalOptions="Center"/>
+                </HorizontalStackLayout>
+                <Button Text="Réinitialiser les filtres" 
+                        Command="{Binding ClearFiltersCommand}"
+                        Margin="0,5,0,0"/>
+            </VerticalStackLayout>
+        </Grid>
 
         <CollectionView ItemsSource="{Binding Tasks}"
-                       Grid.Row="1"
-                       x:DataType="viewmodels:TasksViewModel">
+                       Grid.Row="2"
+                       x:DataType="viewmodels:TasksViewModel"
+                       EmptyView="Aucune tâche ne correspond à vos critères">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:TodoTask">
                     <Frame Margin="10"
-                           Padding="10">
-                        <StackLayout>
-                            <Label Text="{Binding Title}"
-                                   FontSize="16"
-                                   FontAttributes="Bold"/>
-                            <Label Text="{Binding Description}"
-                                   FontSize="14"/>
-                            <Label Text="{Binding DueDate, StringFormat='Échéance: {0:d}'}"
-                                   FontSize="12"/>
-                            <Label Text="{Binding Priority}"
-                                   FontSize="12"/>
-                            <Label Text="{Binding Status}"
-                                   FontSize="12"/>
-                        </StackLayout>
+                           Padding="10"
+                           BorderColor="{Binding Priority, Converter={StaticResource PriorityToColorConverter}}">
+                        <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="*,Auto">
+                            <!-- En-tête avec le titre et la catégorie -->
+                            <VerticalStackLayout Grid.Row="0" Grid.Column="0" Spacing="5">
+                                <Label Text="{Binding Title}"
+                                       FontSize="18"
+                                       FontAttributes="Bold"/>
+                                <Label Text="{Binding Description}"
+                                       FontSize="14"
+                                       LineBreakMode="TailTruncation"
+                                       MaxLines="2"/>
+                            </VerticalStackLayout>
+                            
+                            <!-- Badge de catégorie (si présent) -->
+                            <Border Grid.Row="0" Grid.Column="1" 
+                                    BackgroundColor="{Binding Category.Color}"
+                                    Stroke="Transparent"
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 10,10,10,10"
+                                    Padding="7,3"
+                                    VerticalOptions="Start"
+                                    HorizontalOptions="End"
+                                    IsVisible="{Binding Category, Converter={StaticResource NotNullToBoolConverter}}">
+                                <Label Text="{Binding Category.Name}" 
+                                       TextColor="White" 
+                                       FontSize="12"/>
+                            </Border>
+
+                            <!-- Informations sur les dates et le statut -->
+                            <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" 
+                                  ColumnDefinitions="Auto,*,Auto" 
+                                  Margin="0,10,0,0">
+                                <VerticalStackLayout Grid.Column="0" Spacing="3">
+                                    <Label Text="{Binding CreatedAt, StringFormat='Créée le: {0:d}'}"
+                                           FontSize="12"
+                                           VerticalOptions="Center"/>
+                                    <Label Text="{Binding DueDate, StringFormat='Échéance: {0:d}'}"
+                                           FontSize="12"
+                                           VerticalOptions="Center"/>
+                                </VerticalStackLayout>
+                                
+                                <HorizontalStackLayout Grid.Column="2" Spacing="5">
+                                    <Label Text="{Binding Priority}"
+                                           FontSize="12"
+                                           VerticalOptions="Center"
+                                           Padding="5"
+                                           BackgroundColor="{Binding Priority, Converter={StaticResource PriorityToColorConverter}}"
+                                           TextColor="White"/>
+                                    <Label Text="{Binding Status}"
+                                           FontSize="12"
+                                           VerticalOptions="Center"
+                                           Padding="5"
+                                           BackgroundColor="{Binding Status, Converter={StaticResource StatusToColorConverter}}"
+                                           TextColor="White"/>
+                                </HorizontalStackLayout>
+                            </Grid>
+                            
+                            <!-- Informations sur l'auteur et l'assigné -->
+                            <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" 
+                                  ColumnDefinitions="Auto,*,Auto" 
+                                  Margin="0,10,0,0">
+                                <VerticalStackLayout Grid.Column="0" Spacing="3">
+                                    <Label Text="{Binding Author, StringFormat='Auteur: {0}'}"
+                                           FontSize="12"
+                                           VerticalOptions="Center"/>
+                                    <Label Text="{Binding Assignee, StringFormat='Assigné à: {0}'}"
+                                           FontSize="12"
+                                           VerticalOptions="Center"
+                                           IsVisible="{Binding Assignee, Converter={StaticResource NotNullToBoolConverter}}"/>
+                                </VerticalStackLayout>
+                                
+                                <HorizontalStackLayout Grid.Column="2" Spacing="5">
+                                    <Button Text="Modifier" 
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:TasksViewModel}}, Path=EditTaskCommand}"
+                                            CommandParameter="{Binding .}"
+                                            BackgroundColor="{StaticResource Primary}"/>
+                                    <Button Text="Supprimer"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:TasksViewModel}}, Path=DeleteTaskCommand}"
+                                            CommandParameter="{Binding .}"
+                                            BackgroundColor="{StaticResource Secondary}"/>
+                                </HorizontalStackLayout>
+                            </Grid>
+                            
+                            <!-- Tags et sous-tâches (optionnel, pourrait être affiché dans la vue détaillée) -->
+                        </Grid>
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+
+        <ActivityIndicator Grid.Row="2" 
+                           HorizontalOptions="Center" 
+                           VerticalOptions="Center" 
+                           IsRunning="{Binding IsBusy}" 
+                           IsVisible="{Binding IsBusy}"/>
     </Grid>
 
 </ContentPage> 
